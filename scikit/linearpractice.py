@@ -10,7 +10,9 @@ y  = x['alcohol']      # target: alcohol content
 X = x.drop(columns=['alcohol'])
 
 lprac = linear_model.LinearRegression()
-plt.scatter(x.T[0], y)
+plt.scatter(x.iloc[:,0], y)
+plt.xlabel(x.columns[0])
+plt.ylabel('Alcohol content')
 plt.show()
 
 x1,x2,y1,y2 = train_test_split(x,y, test_size=0.2)
