@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import datasets
 from sklearn.preprocessing import LabelEncoder
 from sklearn import neighbors,metrics
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 
 data = pd.read_csv("scikit\wine.data")
