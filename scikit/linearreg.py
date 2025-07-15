@@ -24,14 +24,18 @@ y = california_housing.target
 #model creation
 
 lreg = linear_model.LinearRegression()
-plt.scatter(x.T[3], y)
+# plt.scatter(x.T[3], y)
+# plt.scatter(x[:,0],y)
+# plt.scatter(x[:,1],y)
 plt.show()
 
 x1,x2,y1,y2 = train_test_split(x,y, test_size=0.2)
 m = lreg.fit(x1,y1)
 p = m.predict(x2)
-print("prediction;",p)
-print("R^2 value:", lreg.score(x,y))
-print("coded:",lreg.coef_)
-print("intercept:",lreg.intercept_)
+plt.scatter(p, y2)
+plt.show()
+# print("prediction;",p)
+# print("R^2 value:", lreg.score(x,y))
+# print("coded:",lreg.coef_)
+# print("intercept:",lreg.intercept_)
 

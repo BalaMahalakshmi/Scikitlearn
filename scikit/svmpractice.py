@@ -15,11 +15,19 @@ x1,x2,y1,y2 = train_test_split(x, y, test_size=0.25, random_state=42)
 
 m = svm.SVC(kernel='linear')
 m.fit(x1,y1)
-print(m)
+# print(m)
 
 p = m.predict(x2)
 acc = accuracy_score(y2,p)
  
-print("prediction:",p)
-print("accuracy:",acc)
-print("confusion matrix:",confusion_matrix(y2,p))
+# print("prediction:",p)
+# print("accuracy:",acc)
+# print("confusion matrix:",confusion_matrix(y2,p))
+
+m2 = svm.SVC(kernel='rbf', random_state=1)
+m2.fit(x1,y1)
+print(m2)
+p2 = m2.predict(x2)
+acc2 = accuracy_score(y2,p)
+print(p2)
+print(acc2)
