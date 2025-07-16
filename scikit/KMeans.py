@@ -1,35 +1,48 @@
-from sklearn.datasets import load_breast_cancer
 from sklearn.cluster import KMeans
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import scale
 import pandas as pd
 from sklearn import metrics
+from sklearn.datasets import load_digits
+from sklearn.preprocessing import StandardScaler
+from matplotlib import pyplot as plt
 
-bc = load_breast_cancer()
-# print(bc)
 
-x = scale(bc.data)
+digits = load_digits()
+x = digits.data
+y = digits.target
+# print(df_digits.head())
+
+df = pd.DataFrame(x, columns=digits.feature_names)
+df['digits class'] = y
+# print(df)
+
+# print(df.isnull().sum())
+
+# print(df.describe())
+
+sc = StandardScaler()
+x = sc.fit_transform(x)
 # print(x)
-y = bc.target
+wss=[]
+for i in range(1,10):
+    KM = KMeans(n_clusters = i, init = 'k-means++', random_state = 0)
+    KM.fit(x)
+    wss.append(KM.inertia_)
 
-#creating a model
+f, ax = plt.subplots(figsize=(8,6))
+plt.plot(range(1,10),wss)
+plt.title("technique")
+plt.xlabel("no.of clusters")
+plt.ylabel("wss-kmeans")
+# plt.show()
 
-x1,x2,y1,y2 = train_test_split(x,y, test_size=6)
-m = KMeans(n_clusters=2, random_state=0)
-m.fit(x1)
+N = 4
+km = KMeans(init= 'k-means++', n_clusters=N)
+km.fit(x)
+labels = km.labels_
+# print(labels)
 
-p = m.predict(x2)
-labels = m.labels_
-# print("labels:",labels)
-# print("predictions:",p)
-# print("accuracy:",accuracy_score(y2,p))
-# print("actual:",y2)
-# print(len(y2), len(labels))
-# print(pd.crosstab(y1,labels))
-
-def bench_k_means(estimator, name, data):
-    to_time()
-    estimator.fit(data)
-
-bench_k_means(model,'1', x)
+ac = accuracy_score(labels,y)
+print(ac)
