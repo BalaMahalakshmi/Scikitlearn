@@ -11,7 +11,8 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 td = fetch_openml('titanic', version=1, as_frame=True)
 df = td['data']
 df['survived'] = td['target']
-# print(df.head())
+print(df.head())
+
 
 # print(sns.countplot(x='survived', data=df))
 # print(sns.countplot(x='survived', hue= 'sex',data=df))
@@ -79,10 +80,10 @@ x1,x2,y1,y2 = train_test_split(x,y, test_size=0.3,random_state=1)
 m = LogisticRegression()
 m.fit(x1,y1)
 
-p = m.predict(x2)
-print("predict:",p)
-ac = accuracy_score(y2,p)
-print(ac)
-c = confusion_matrix(y2,p)
-print(c)
+# p = m.predict(x2)
+# print("predict:",p)
+# ac = accuracy_score(y2,p)
+# print(ac)
+# c = confusion_matrix(y2,p)
+# print(c)
 
